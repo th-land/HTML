@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--talbe表格标签宽高会继承,自动分配,子标签继承父标签
+        tr 表格行
+        th 表格表头
+        td 表格单元格
+        rowspan 单元格可以横跨的行数
+        colspan 单元格可以横跨的列数
+    -->
+    <table border="1px" width="500px" height="500px" bgcolor="#ccc" bordercolor="red" cellspacing="0" cellpadding="0">
+        <tr height="50px">
+            <td rowspan="3">php
+                <!--想要嵌套的表格必须在td内添加-->
+                <table border="1px" width="50px" height="50px" bordercolor="blue" cellspacing="0">
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </td>
+            <td width="50px" colspan="3">php</td>
+        </tr>
+        <tr>
+            <td>php
+                <!--嵌套表格中有内容会自动撑开-->
+                <table border="1px" width="50px" height="50px" bordercolor="blue" cellspacing="0">
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </td>
+            <td>php</td>
+            <td>php</td>
+        </tr>
+        <tr>
+            <td>php</td>
+            <td>php</td>
+            <td>php</td>
+        </tr>
+    </table>
+</body>
+
+</html>
