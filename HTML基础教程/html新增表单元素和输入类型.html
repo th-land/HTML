@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" align="center">
+        <p>预定义列表</p>
+        <input type="text" list="list_1">
+        <datalist id="list_1">
+            <option value="php"/>
+            <option value="mysql"/>
+            <option value="vue"/>
+        </datalist>
+
+        <p>email类型</p>
+        <input type="email">
+        <input type="submit">
+
+        <p>url类型</p>
+        <input type="url">
+        <input type="submit">
+
+        <p>number类型</p>
+        <input type="number" min="3" max="8">
+        <!--最小3,最大8-->
+        <input type="submit">
+
+        <p>range类型</p>
+        <!--一定范围内的数值-->
+        <input type="range">
+        <input type="submit">
+
+        <p>日期选择器</p>
+        <input type="date">
+        <input type="submit">
+    </form>
+</body>
+
+</html>
