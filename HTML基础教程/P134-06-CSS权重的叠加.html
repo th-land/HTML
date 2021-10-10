@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul li {
+            color: green;
+        }
+        /* ul和li作为标签选择器权重相加为2 */
+        
+        li {
+            color: red;
+        }
+        /* li标签选择器权重是0 */
+        
+        .nav li {
+            color: pink;
+        }
+        /* .nav类选择器权重10,li标签选择器1,共计11 */
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>大猪蹄子</li>
+        <li>大肘子</li>
+        <li>猪尾巴</li>
+    </ul>
+</body>
+
+</html>
