@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clearfix:after {
+            /*在类名为"clearfix"的元素内最后加入一个默认的行内元素*/
+            content: "";
+            /* 内容为空,也有加英文'.'的,效果一致 */
+            display: block;
+            /*加入的这个内容转换为块级元素*/
+            height: 0;
+            /*类添加的虚拟元素高度为0*/
+            clear: both;
+            /*虚拟元素的左右不允许浮动,清除左右两边的浮动,与额外标签法原理相同*/
+            visibility: hidden;
+            /*visibility规定元素是否可见,hidden表示不可见  注意它和display:none是有区别的,visibility:hidden;仍然占据空间,只是看不到而已*/
+        }
+        
+        .clearfix {
+            *zoom: 1;
+            /*这是针对于IE6的，因为IE6不支持:after伪类，这个神奇的zoom:1让IE6的元素可以清除浮动来包裹内部元素。具体意思的话，不用深究，听说微软的工程师自己都无法解释清楚。height:1%效果也是一样。*/
+        }
+        
+        .box {
+            margin: auto;
+            width: 800px;
+            border: 1px solid yellow;
+        }
+        
+        .box1 {
+            float: left;
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+        
+        .box2 {
+            float: left;
+            width: 400px;
+            height: 300px;
+            background-color: red;
+        }
+        
+        .footer {
+            height: 300px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box clearfix">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+    <div class="footer">
+    </div>
+</body>
+
+</html>
