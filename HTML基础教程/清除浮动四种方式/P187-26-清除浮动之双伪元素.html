@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header {
+            height: 40px;
+            border: 1px solid red;
+        }
+        
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+        }
+        
+        .clearfix:after {
+            clear: both;
+        }
+        
+        .clearfix {
+            *zoom: 1;
+        }
+        
+        .main {
+            /* 注意margin-top20px,在双伪元素的时候margin-top会正常生效 */
+            margin-top: 20px;
+            width: 1000px;
+            background-color: rgb(241, 218, 218);
+        }
+        
+        .div1 {
+            /* 注意margin-top20px,在双伪元素的时候margin-top会正常生效 */
+            margin-top: 20px;
+            background-color: yellow;
+            height: 30px;
+        }
+        
+        .div2 {
+            background-color: blue;
+            height: 30px;
+        }
+        
+        .left {
+            float: left;
+            width: 300px;
+            height: 300px;
+            background-color: orange;
+        }
+        
+        .right {
+            float: right;
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+        }
+        
+        .footer {
+            height: 40px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">header</div>
+    <div class="main clearfix">
+        <div class="div1">div1</div>
+        <div class="div2">div2</div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+
+</html>
