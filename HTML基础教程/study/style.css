@@ -1,0 +1,432 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* CSS第一步进行初始化,清除样式不同 */
+}
+
+.clearfix:after {
+    /*在类名为"clearfix"的元素内最后加入一个默认的行内元素*/
+    content: "";
+    /* 内容为空,也有加英文'.'的,效果一致 */
+    display: block;
+    /*生成的元素以块级元素显示,占满剩余空间;*/
+    height: 0;
+    /*避免生成内容破坏原有布局的高度。*/
+    clear: both;
+    /*虚拟元素的左右不允许浮动,清除左右两边的浮动,与额外标签法原理相同*/
+    visibility: hidden;
+    /*visibility规定元素是否可见,hidden表示不可见  注意它和display:none是有区别的,visibility:hidden;仍然占据空间,只是看不到而已 使生成的内容不可见，并允许可能被生成内容盖住的内容可以进行点击和交互;*/
+}
+
+.clearfix {
+    *zoom: 1;
+    /*这是针对于IE6的，因为IE6不支持:after伪类，这个神奇的zoom:1让IE6的元素可以清除浮动来包裹内部元素。具体意思的话，不用深究，听说微软的工程师自己都无法解释清楚。height:1%效果也是一样。*/
+}
+
+body {
+    /* height: 3000px; */
+    /*写页面时候看的能舒服些,高了下面有空间,全部写完可以删掉的*/
+    background-color: #e3e5e7;
+}
+
+.w {
+    width: 1200px;
+    margin: auto;
+    /*网页布局第一准则,确定版心,找到版心定公有类宽度*/
+}
+
+li {
+    list-style: none;
+    /*清除li的默认方式*/
+}
+
+a {
+    text-decoration: none;
+    /*清除a的默认方式*/
+}
+
+button {
+    border: none;
+    /*每个button的border都有默认的2px,清除掉*/
+}
+
+
+/* header布局思路如下
+首先按照页面布局准则,先确定版心为1200px
+给header添加.w公有类版心,宽度自动变成1200px-再添加高度,上下加margin(margin这里特别注意CSS的层叠性,margin:30px auto---auto不要忘记再次声明)撑开-高度标准按照一列中最高的那个模块
+header整列中的所有盒子都要进行浮动才能在一行,遵循网页布局准则,遇列浮动
+ */
+
+
+/* header中logo模块布局思路 
+ 想要让logo模块和其他的都在一行显示,先加浮动,logo本身是一个图片,按照切下来的图片大小设定宽高
+ */
+
+.header {
+    height: 42px;
+    /* header模块布局思路,给header整行定最大的高度,也就是logo图片高度42px,上下指定30的margin */
+    margin: 30px auto;
+    /*.header的margin会覆盖掉.w公共类版心的margin,需要重新加auto,注意auto*/
+}
+
+.logo {
+    float: left;
+    width: 195px;
+    height: 42px;
+    /*为了能让所有盒子在一行,给logo加浮动*/
+    /* logo必须设定宽和高,不设定宽会铺满盒子,高度设定防止意外 */
+}
+
+.logo img {
+    width: 100%;
+    /*图片100%充满盒子,非必须设定*/
+}
+
+.nav {
+    /*导航栏注意点：
+    实际开发中,我们不会直接用链接a而是用li包含链接(li+a)的做法
+    1.li+a语义更清晰,一看这就是有条理的列表型内容。
+    2.如果直接用a,搜索引擎容易辨别为有堆砌关键字嫌疑(故意堆砌关键字容易被搜索引擎有降权的风险),从而影响网站排名
+    */
+    float: left;
+    /*ul盒子浮动起来,ul浮动不代表内部的li也浮动了,必须ul li一起浮动*/
+    margin-left: 54px;
+    /*这个可以样式写完以后写距离,看右边的nav文字大小和宽高来决定margin-left*/
+}
+
+.nav ul li {
+    float: left;
+    margin: 0 15px;
+    /*设定margin左右15的意义就在于,a标签和底部的蓝色线条与其他a标签之间需要一些距离,padding会撑开a,底部蓝色线条会增大,使用margin来增加距离最合适*/
+    /* margin做距离控制,padding做内部填充 */
+}
+
+.nav ul li a {
+    display: block;
+    /*转为块元素才能有宽高*/
+    height: 42px;
+    padding: 0 10px;
+    /*padding适当撑开距离,点击覆盖面大,增强用户体验*/
+    line-height: 42px;
+    /*高度和行高一致时,居中显示*/
+    font-size: 18px;
+    color: #050505;
+}
+
+.nav ul li a:hover {
+    border-bottom: 2px solid #00a4ff;
+    /*下划线蓝色效果-给a标签增加hover边框效果*/
+    color: #00a4ff;
+    /*hover文字的颜色*/
+}
+
+.search {
+    float: left;
+    width: 412px;
+    height: 42px;
+    background-color: pink;
+}
+
+.search input {
+    float: left;
+    width: 340px;
+    /*设计稿是361px,因为给已经设定过width的input增加padding,一定会撑大input这个盒子,所以要将width减少相应的距离*/
+    /*这里有几个问题
+    宽度刚刚好,没有设定float的时候button会被挤下去,因为行内块元素有默认间隙
+    宽度过低会出现input和button水平对不齐的问题,问题来源于基线
+    */
+    /* 两种解决办法 */
+    /* float浮动的特性就是元素紧贴,可以解决掉 */
+    /* 根据基线原理,使用顶端对齐 vertical-align: top; */
+    height: 40px;
+    border: 1px solid #00a4ff;
+    border-right: none;
+    padding-left: 21px;
+    /*input内部文字与border有一定距离,一定要注意padding撑大盒子的特性*/
+    font-size: 14px;
+    color: #bfbfbf;
+}
+
+.search button {
+    float: left;
+    width: 50px;
+    height: 42px;
+    background-color: #00a4ff;
+    /*图片高度不够,背景色填充一下*/
+}
+
+.user {
+    float: left;
+    /*浮动向左或者向右都行,但是必须浮动*/
+    margin-left: 31px;
+    height: 42px;
+}
+
+.banner {
+    height: 420px;
+    background-color: #1c036c;
+    /*没有指定高度,背景颜色平铺宽度*/
+}
+
+.banner .w {
+    height: 420px;
+    /*如果新增一个img标签的话不用设置高度也可以撑开盒子,但这里是背景图片,必须有height才能显示*/
+    background: url(images/banner2.png)no-repeat top center;
+    /*必须加no-repeat 和top center 居中显示*/
+}
+
+.subnav {
+    float: left;
+    /*必须左浮动,要不右边的course模块往哪放*/
+    width: 190px;
+    height: 420px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.subnav ul li a {
+    font-size: 14px;
+    color: #fff;
+}
+
+.subnav ul li {
+    height: 46px;
+    line-height: 46px;
+    padding: 0 20px;
+    /*margin也可以*/
+}
+
+.subnav ul li a span {
+    float: right;
+    /*span里面的箭头需要向右浮动*/
+}
+
+.subnav ul li a:hover {
+    color: #00a4ff;
+}
+
+.course {
+    float: right;
+    /*必须右浮动,因为subnav模块已经左浮动了*/
+    width: 228px;
+    height: 300px;
+    margin-top: 50px;
+    background-color: white;
+}
+
+.course h2 {
+    height: 48px;
+    /*不设定宽度,省略代码,宽度可以自己适应父盒子*/
+    text-align: center;
+    line-height: 48px;
+    color: #fff;
+    background-color: rgb(115, 206, 234);
+}
+
+.course .bd {
+    padding: 0 20px;
+    /*给bd的内容整体增加左右距离,不用分别声明,节省代码*/
+}
+
+.course .bd ul li {
+    padding: 14px 0;
+    /*给li里面的h4+p标签添加上下距离,因为给h4、p添加padding都不合适,也不能给bd添加,li是最合适的
+    不仅仅是这样,h4+p标签如果用margin的话会导致margin重叠的现象*/
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.course .bd h4 {
+    color: #4e4e4e;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.course .bd p {
+    font-size: 12px;
+    color: #a5a5a5;
+}
+
+.more {
+    margin-top: 2px;
+    display: block;
+    /*必须转化为块级元素才可以增加a标签的高度*/
+    height: 41px;
+    /*不加固定宽度,利用bd自身的宽度来对齐上面的文字*/
+    line-height: 41px;
+    font-size: 16px;
+    border: 1px solid #00a4ff;
+    color: #00a4ff;
+    text-align: center;
+}
+
+.goods {
+    height: 60px;
+    line-height: 60px;
+    /*利用行高的继承来使文字都居中显示*/
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+}
+
+.goods h3 {
+    float: left;
+    margin-left: 34px;
+    font-size: 16px;
+    color: #00a4ff;
+}
+
+.goods-items {
+    float: left;
+    margin-left: 34px;
+}
+
+.goods-items li {
+    float: left;
+}
+
+.goods-items a {
+    padding: 0 34px;
+    color: #050505;
+    border-left: 1px solid #bfbfbf;
+    /*白线可以用左边框来做*/
+}
+
+.mod {
+    float: right;
+    margin-right: 26px;
+    font-size: 14px;
+    color: #00a4ff;
+}
+
+.box {
+    margin-top: 37px;
+}
+
+.box-hd {
+    height: 40px;
+    /*必须指定高度,不指定高度,浮动脱离文档流带来的影响会出现,li盒子会向上挤压*/
+}
+
+.box h3 {
+    float: left;
+    font-size: 20px;
+    font-weight: 400;
+    color: #494949;
+}
+
+.box a {
+    float: right;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #a5a5a5;
+}
+
+.box-bd ul {
+    /* 因为ul没有高度,li又是浮动的,会造成ul的高度塌陷,clearfix清除浮动,或者给ul定高度,推荐使用clearfix,因为ul的内容有可能是随时有变化的 */
+    width: 1215px;
+    /*ul中的li增加margin以后超出了1200px,需要给ul增加宽度来适应5个盒子一行*/
+}
+
+.box-bd ul li {
+    float: left;
+    /*盒子是浮动的*/
+    margin: 0 15px 15px 0;
+    width: 228px;
+    height: 270px;
+    background-color: #fff;
+    position: relative;
+    /*子元素绝对定位,父元素必然是相对,来包裹和控制住子元素的定位范围,防止满天飞*/
+}
+
+.box-bd em img {
+    position: absolute;
+    top: 0;
+    right: -4px;
+    /*right:0是紧贴右边,负值可以继续向右溢出*/
+}
+
+.box-bd ul li>img {
+    /* >是子选择器,解决两个img样式冲突 */
+    display: block;
+    /*img标签因为是行内块元素,换行符问题,会出现间隙,转换为块级元素即可*/
+    width: 100%;
+    height: 157px;
+    /*box-bd和下面大模块的图片不一致,统一高度,做到代码复用*/
+}
+
+.box-bd ul li h4 {
+    height: 32px;
+    /*给h4一个高度,不管h4的内容是一行还是两行,都可以让它正常显示,不会导致下面的info模块错位*/
+    margin: 25px 20px 0 24px;
+    /*给margin padding都一样,但是控制与外部元素的一般用margin,自己拉扯自己才用padding*/
+    font-size: 14px;
+    color: #050505;
+}
+
+.box-bd .info {
+    margin: 20px 20px 0 24px;
+    font-size: 12px;
+    /*文字是一样的,给info就行了,不用单独给span再设置*/
+    color: #999999;
+}
+
+.box-bd .info span {
+    color: #ff7c2d;
+}
+
+.footer {
+    height: 415px;
+    /*指定高度,撑开footer盒子*/
+    background-color: #fff;
+}
+
+.footer .w {
+    padding-top: 33px;
+    /*给版心和footer大盒子增加一个top距离*/
+}
+
+.footer .copyright {
+    float: left;
+    /*版权左浮动*/
+}
+
+.copyright p {
+    margin: 25px 0 15px 0;
+    /*p的左右间距用margin来做,因为是外部距离*/
+    font-size: 12px;
+    color: #666666;
+}
+
+.copyright a {
+    display: block;
+    /*必须使用block来转换成块级元素*/
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 16px;
+    color: #00a4ff;
+    border: 1px solid #00a4ff;
+    text-align: center;
+}
+
+.links {
+    float: right;
+    /*link模块右浮动*/
+}
+
+.links dl {
+    float: left;
+    margin-left: 146px;
+    /*必须使用margin-left,如果使用的是margin-right则文字会倒过来*/
+}
+
+.links dt {
+    margin-bottom: 15px;
+    /*因为dt下margin和dd上margin的距离不相同,需要给dd所有元素都设置margin,所以给dt设置margin-bottom最合适*/
+    font-size: 16px;
+    color: #333333;
+}
+
+.links dd {
+    margin-bottom: 8px;
+    /*下面给间距，上面会margin重叠*/
+    font-size: 12px;
+    color: #333333;
+}
