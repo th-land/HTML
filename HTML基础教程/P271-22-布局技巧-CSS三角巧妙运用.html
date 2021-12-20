@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 0;
+            height: 0;
+            border-color: red blue transparent transparent;
+            /* 保留上边框和右边框撑开盒子,其余变成透明transparent-透明,在没有了左边框和下边框的情况下,其余边框会铺满整个盒子 */
+            border-style: solid;
+            /*边框的线条样式*/
+            border-width: 100px 50px 0 0;
+            /*边框的宽度,上、右边框需要,左下边框不需要宽度*/
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+    </div>
+</body>
+
+</html>
