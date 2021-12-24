@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*需求-把四个div都变成一个颜色*/
+        /* 思路1-并集选择器 */
+        /* 
+        .icon1,
+        .icon2,
+        .icon3,
+        .icon4 {
+            background-color: red;
+        }
+
+         */
+        /* 思路2-多类名选择器-新增一段类名 */
+        /*  
+        .icon {
+            background-color: yellowgreen;
+        }*/
+        /* 思路3-属性选择器^=icon代表选择前几个值是icon的元素 */
+        /* div[class^=icon] {
+            background-color: yellow;
+        } */
+        /*思路4-属性选择器$=data代表选择结尾几个值是data的元素--属性选择器可以选择属性值结尾的某些元素*/
+        /*  
+        section[class$=data] {
+            background-color: pink;
+        }
+        */
+        /*思路5-属性选择器*=data代表选择包含data值的元素,不分前后--属性选择器可以选择属性值包含有data属性值的某些元素 */
+        
+        section[class*=data] {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="icon1">小图标1</div>
+    <div class="icon2">小图标2</div>
+    <div class="icon3">小图标3</div>
+    <div class="icon4">小图标4</div> -->
+
+    <div class="icon 1">小图标1</div>
+    <div class="icon 2">小图标2</div>
+    <div class="icon 3">小图标3</div>
+    <div class="icon 4">小图标4</div>
+    <div>我是打酱油的</div>
+
+    <section class="icon1-data">我是安琪拉的</section>
+    <section class="icon2-data">我是哥斯拉的</section>
+    <section class="icon3-ico">那我是谁</section>
+</body>
+
+</html>
