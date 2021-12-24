@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 选择ul下的第一个li */
+        /* ul li:nth-child(even) {
+            background-color: yellowgreen;
+        } */
+        /* 选择ul里面的偶数li */
+        /* ul li:nth-child(odd) {
+            background-color: gray;
+        } */
+        /* nth-child(n) 从0开始 每次加1 往后面计算 这里面必须是n 不能是其他字母 选择了所有的ol li */
+        /* ol li:nth-child(n) { 
+            background-color: pink;
+        }
+        */
+        /* 选择ul li里面的偶数 */
+        /* ul li:nth-child(2n) { 
+            background-color: pink;
+        }*/
+        /* 选择ul li里面的奇数 */
+        /*  
+        ul li:nth-child(2n+1) {
+            background-color: yellow;
+        }
+        */
+        /* 选择ul li-5、10、15 */
+        /*  
+        ul li:nth-child(5n) {
+            background-color: pink;
+        }
+        */
+        /* 选择ul li-从第五个开始-包含第五个 */
+        /*  
+        ul li:nth-child(n+5) {
+            background-color: green
+        }
+        */
+        /* 选择ul li-从第五个往前选择 */
+        
+        ul li:nth-child(-n+5) {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第4个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+    </ul>
+
+    <ol>
+        <li>我是第1个孩子</li>
+        <li>我是第2个孩子</li>
+        <li>我是第3个孩子</li>
+        <li>我是第4个孩子</li>
+        <li>我是第5个孩子</li>
+        <li>我是第6个孩子</li>
+        <li>我是第7个孩子</li>
+        <li>我是第8个孩子</li>
+    </ol>
+</body>
+
+</html>
