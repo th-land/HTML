@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            /* 两个属性都做过渡的话分开写 */
+            /* transition: width 0.5s ease 0.1s, height 0.5s ease 0.1s; */
+            /* 后面的0.1s滑动等待时间不要可以简写成这样,后面两个不是必须项*/
+            transition: width 0.5s, height 0.5s;
+            /* 所有属性都要选择上的话,写all就可以,all是全部的意思*/
+            /* transition: all 0.5s; */
+        }
+        
+        div:hover {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+    </div>
+</body>
+
+</html>
